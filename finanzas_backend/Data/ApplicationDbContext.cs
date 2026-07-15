@@ -7,8 +7,9 @@ namespace finanzas_backend.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
+        private readonly IHttpContextAccessor? _httpContextAccessor;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHttpContextAccessor? httpContextAccessor = null) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
         }

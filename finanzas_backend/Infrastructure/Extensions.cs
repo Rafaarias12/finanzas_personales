@@ -62,7 +62,6 @@ namespace finanzas_backend.Infrastructure
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-
                 options.UseNpgsql(configuration.GetConnectionString("develop"));
             });
 
