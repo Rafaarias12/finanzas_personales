@@ -1,13 +1,15 @@
+using finanzas_backend.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.IO;
-using System;
-using System.Linq;
 
 namespace finanzas_backend.Infrastructure
 {
@@ -56,6 +58,12 @@ namespace finanzas_backend.Infrastructure
                         Array.Empty<string>()
                     }
                 });
+            });
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+
+                options.UseNpgsql(configuration.GetConnectionString("develop"));
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
